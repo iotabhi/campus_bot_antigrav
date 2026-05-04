@@ -82,5 +82,26 @@ chatForm.addEventListener('submit', (e) => {
         appendMessage(text, true);
         sendMessage(text);
         userInput.value = '';
+        
+        // Hide suggestions once the user starts chatting
+        const suggestions = document.getElementById('suggestions');
+        if (suggestions) {
+            suggestions.style.display = 'none';
+        }
     }
+});
+
+// Handle suggestion chips
+document.querySelectorAll('.suggestion-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+        const text = chip.innerText;
+        appendMessage(text, true);
+        sendMessage(text);
+        
+        // Hide suggestions
+        const suggestions = document.getElementById('suggestions');
+        if (suggestions) {
+            suggestions.style.display = 'none';
+        }
+    });
 });
