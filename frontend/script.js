@@ -105,3 +105,19 @@ document.querySelectorAll('.suggestion-chip').forEach(chip => {
         }
     });
 });
+
+// Handle sidebar topics
+document.querySelectorAll('.sidebar-topic').forEach(topic => {
+    topic.addEventListener('click', () => {
+        // Extract text without the icon (just the text content)
+        const text = "Tell me about " + topic.innerText.trim();
+        appendMessage(text, true);
+        sendMessage(text);
+        
+        // Hide suggestions if they are still visible
+        const suggestions = document.getElementById('suggestions');
+        if (suggestions) {
+            suggestions.style.display = 'none';
+        }
+    });
+});

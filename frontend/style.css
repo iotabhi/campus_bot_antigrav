@@ -50,6 +50,7 @@ body {
 /* Sidebar Styling */
 .sidebar {
     width: 300px;
+    flex-shrink: 0;
     background: var(--sidebar-bg);
     border-right: 1px solid var(--glass-border);
     padding: 2rem;
@@ -71,7 +72,7 @@ body {
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
@@ -106,7 +107,7 @@ body {
     align-items: center;
     gap: 1rem;
     transition: all 0.3s ease;
-    cursor: default;
+    cursor: pointer;
 }
 
 .topics-list li i {
