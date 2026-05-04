@@ -4,7 +4,7 @@ const chatMessages = document.getElementById('chat-messages');
 const typingIndicator = document.getElementById('typing-indicator');
 
 // In production, update this URL to your Render deployed backend URL
-const API_URL = 'http://127.0.0.1:8000/chat'; 
+const API_URL = 'https://campus-bot-antigrav.onrender.com/chat'; 
 // Example for production: const API_URL = 'https://campus-chatbot-backend.onrender.com/chat';
 
 // Store conversation history for context
