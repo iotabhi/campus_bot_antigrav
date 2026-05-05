@@ -9,7 +9,7 @@ app = FastAPI(title="Campus Chatbot API")
 # Setup CORS so the frontend on Vercel can access it
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://nist.edu/"],  # In production, replace "*" with your Vercel URL
+    allow_origins=["*"],  # In production, replace "*" with your Vercel URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
