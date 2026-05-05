@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NISTCampusConnect | AI Chatbot</title>
-    <meta name="description" content="CampusConnect AI Chatbot - Get all your college-related questions answered instantly.">
+    <title>NIST Campus Connect | AI Chatbot</title>
+    <meta name="description" content="NIST Campus Connect AI Chatbot - Get all your college-related questions answered instantly.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Background Animated Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
     <div class="app-container">
         <!-- Sidebar or Side Info -->
         <aside class="sidebar">
             <div class="logo-container">
-                <i class="fa-solid fa-graduation-cap logo-icon"></i>
-                <h1 class="logo-text">NISTCampusConnect</h1>
+                <div class="logo-icon-wrapper">
+                    <img src="logo.png" alt="Logo" class="logo-image">
+                </div>
+                <h1 class="logo-text">NIST Campus Connect</h1>
             </div>
             <div class="sidebar-info">
                 <h2>Your AI Campus Assistant</h2>
                 <p>Ask me anything about:</p>
                 <ul class="topics-list">
-                    <li class="sidebar-topic"><i class="fa-solid fa-file-signature"></i> Admissions</li>
-                    <li class="sidebar-topic"><i class="fa-solid fa-building-columns"></i> Academics</li>
-                    <li class="sidebar-topic"><i class="fa-solid fa-indian-rupee-sign"></i> Fees & Scholarships</li>
-                    <li class="sidebar-topic"><i class="fa-solid fa-bed"></i> Hostel Facilities</li>
-                    <li class="sidebar-topic"><i class="fa-solid fa-briefcase"></i> Placements</li>
+                    <li class="sidebar-topic"><div class="topic-icon"><i class="fa-solid fa-file-signature"></i></div> Admissions</li>
+                    <li class="sidebar-topic"><div class="topic-icon"><i class="fa-solid fa-building-columns"></i></div> Academics</li>
+                    <li class="sidebar-topic"><div class="topic-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div> Fees & Scholarships</li>
+                    <li class="sidebar-topic"><div class="topic-icon"><i class="fa-solid fa-bed"></i></div> Hostel Facilities</li>
+                    <li class="sidebar-topic"><div class="topic-icon"><i class="fa-solid fa-briefcase"></i></div> Placements</li>
                 </ul>
             </div>
             <div class="status-indicator">
-                <span class="pulse"></span> System Online
+                <div class="pulse-ring"><span class="pulse"></span></div> 
+                <span class="status-text">System Online</span>
             </div>
         </aside>
 
@@ -39,12 +49,18 @@
             <header class="chat-header">
                 <div class="agent-info">
                     <div class="agent-avatar">
-                        <i class="fa-solid fa-robot"></i>
+                        <img src="logo.png" alt="Bot Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
                     <div class="agent-details">
                         <h2>CampusBot</h2>
-                        <span class="typing-indicator" id="typing-indicator" style="display: none;">Typing...</span>
+                        <span class="typing-indicator" id="typing-indicator" style="display: none;">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        </span>
                     </div>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
+                    <!-- <button class="action-btn" title="Settings"><i class="fa-solid fa-ellipsis-vertical"></i></button> -->
                 </div>
             </header>
 
@@ -52,7 +68,7 @@
                 <!-- Initial Welcome Message -->
                 <div class="message bot-message">
                     <div class="message-content">
-                        Hi there! 👋 I'm CampusBot, your digital assistant for the college. How can I help you today?
+                        Hi there! 👋 I'm CampusBot, your digital assistant for NIST. How can I help you today?
                     </div>
                 </div>
                 
@@ -64,13 +80,15 @@
                 </div>
             </div>
 
-            <div class="chat-input-container">
-                <form id="chat-form" class="chat-form">
-                    <input type="text" id="user-input" placeholder="Type your question here..." autocomplete="off" required>
-                    <button type="submit" id="send-btn">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
+            <div class="chat-input-wrapper">
+                <div class="chat-input-container">
+                    <form id="chat-form" class="chat-form">
+                        <input type="text" id="user-input" placeholder="Type your question here..." autocomplete="off" required>
+                        <button type="submit" id="send-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </main>
     </div>

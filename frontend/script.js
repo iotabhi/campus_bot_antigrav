@@ -2,6 +2,7 @@ const chatForm = document.getElementById('chat-form');
 const userInput = document.getElementById('user-input');
 const chatMessages = document.getElementById('chat-messages');
 const typingIndicator = document.getElementById('typing-indicator');
+const themeToggle = document.getElementById('theme-toggle');
 
 // In production, update this URL to your Render deployed backend URL
 const API_URL = 'https://campus-bot-antigrav.onrender.com/chat'; 
@@ -9,6 +10,32 @@ const API_URL = 'https://campus-bot-antigrav.onrender.com/chat';
 
 // Store conversation history for context
 let messageHistory = [];
+
+// Theme Toggle Logic
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    const icon = themeToggle.querySelector('i');
+    if (document.body.classList.contains('light-theme')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+});
+
+// Robust scroll function to handle dynamic content pushing
+function scrollToBottom() {
+    // Scroll immediately
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Scroll again after a tiny delay to account for rendering/animations
+    setTimeout(() => {
+        chatMessages.scrollTo({
+            top: chatMessages.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, 50);
+}
 
 // Helper function to format message with Markdown-like bold/italic support (simple version)
 function formatMessage(text) {
@@ -33,13 +60,13 @@ function appendMessage(text, isUser = false) {
     messageDiv.appendChild(contentDiv);
     chatMessages.appendChild(messageDiv);
     
-    // Scroll to bottom
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    scrollToBottom();
 }
 
 async function sendMessage(message) {
     // Show typing indicator
-    typingIndicator.style.display = 'inline';
+    typingIndicator.style.display = 'flex';
+    scrollToBottom();
     
     // Add user message to history
     messageHistory.push({ role: 'user', content: message });
@@ -62,16 +89,18 @@ async function sendMessage(message) {
         // Add bot response to history
         messageHistory.push({ role: 'assistant', content: data.response });
         
+        // Hide typing indicator before appending so it doesn't leave an empty gap
+        typingIndicator.style.display = 'none';
+
         // Append to UI
         appendMessage(data.response, false);
     } catch (error) {
         console.error("Error communicating with the chatbot backend:", error);
+        typingIndicator.style.display = 'none';
         appendMessage("Sorry, I'm having trouble connecting to the server right now. Please try again later.", false);
         // Remove the failed message from history
         messageHistory.pop();
-    } finally {
-        // Hide typing indicator
-        typingIndicator.style.display = 'none';
+        scrollToBottom();
     }
 }
 
